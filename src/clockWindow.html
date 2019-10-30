@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dawn of A New Day - Clock</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="clockStyle.css" rel="stylesheet">
+</head>
+
+<body>
+    <span class="button" id="exit"></span>
+    <div id="clock">
+        <img src="res/termina_clock/outside.png" alt="minute" class="minutes">
+        <img src="res/termina_clock/pointer.png" alt="point" id="pointer">
+        <div class="hours">
+            <img src="res/termina_clock/day.png" alt="indicate" class="indicator">
+        </div>
+    </div>
+    <script src="clockScript.js"></script>
+    <script>
+        const remoteOut = require('electron').remote;
+        const win = remoteOut.getCurrentWindow();
+        document.getElementById('exit').addEventListener('click', () => {
+            win.close();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+module.exports = {
+    language: "en",
+    fall: "Fall of",
+    dawn: "Dawn of",
+    specific: "",
+    hoursRemain: "Hours Remain",
+    first: "First",
+    second: "Second",
+    third: "Third",
+    final: "Final",
+    timeRemain: "Time Remaining",
+    The: "The",
+    Day: "Day",
+    exit: "Exit",
+    minimize: "Minimize",
+    menu: "Menu",
+    hours: " Hours ",
+    minutes: " Minutes ",
+    secondsRemain: " Seconds Remain -",
+    onNightOf: "Night of the "
+};

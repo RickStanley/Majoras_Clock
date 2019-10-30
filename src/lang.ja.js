@@ -1,0 +1,21 @@
+module.exports = {
+    language: "jp",
+    fall: "",
+    dawn: "",
+    specific: "あと",
+    hoursRemain: "時間",
+    first: "最初",
+    second: "次の日",
+    third: "第三",
+    final: "最期",
+    timeRemain: "残り時間",
+    The: "",
+    Day: "の朝",
+    exit: "出口",
+    minimize: "最小化する",
+    menu: "メニュー",
+    hours: " 時間 ",
+    minutes: " 分 ",
+    secondsRemain: " 秒 残っている -",
+    onNightOf: "日の夜"
+};

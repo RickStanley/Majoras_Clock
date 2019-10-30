@@ -1,0 +1,96 @@
+html,
+body {
+    background: rgba(0, 0, 0, 0);
+    -webkit-app-region: drag;
+    overflow: hidden;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+.button {
+    -webkit-app-region: no-drag;
+    /*position: absolute;*/
+    background-color: rgba(0, 0, 0, 0.20);
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    float: right;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #2474ef;
+    cursor: pointer;
+    box-shadow: 0px 0px 6px rgba(64, 135, 242, 0.25);
+}
+
+#clock {
+    display: -webkit-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 140px;
+    position: relative;
+}
+
+.minutes {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+    width: 208.5px;
+    height: 208.5px;
+    transition: transform 0.3s cubic-bezier(.4, 2.08, .55, .44);
+    border-radius: 210px;
+    box-shadow: 0px 0px 68px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 68px 0px rgba(0, 0, 0, 0.75);
+}
+
+.hours {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 2;
+    height: 155.5px;
+    width: 155.5px;
+    position: absolute;
+    transition: transform 0.3s cubic-bezier(.4, 2.08, .55, .44);
+    background: url(./res/termina_clock/inside.png) no-repeat;
+    background-size: 100%;
+}
+
+.indicator {
+    left: 0;
+    right: -1px;
+    top: 103px;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    z-index: 3;
+    height: 50px;
+    -webkit-transition: transform 0.3s cubic-bezier(.4, 2.08, .55, .44);
+    -moz-transition: transform 0.3s cubic-bezier(.4, 2.08, .55, .44);
+    transition: transform 0.3s cubic-bezier(.4, 2.08, .55, .44);
+}
+
+#pointer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 170px;
+    margin: auto;
+    z-index: 4;
+    width: 18px;
+    height: 30px;
+}
