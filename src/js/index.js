@@ -93,6 +93,21 @@ export default ready(async () => {
   }, {
     passive: true,
     capture: true,
-  })
+  });
+
+  let cursorTimer;
+
+  // Hide cursor
+  document.body.addEventListener("mousemove", () => {
+    clearTimeout(cursorTimer);
+    document.body.style.cursor = "default";
+    cursorTimer = setTimeout(() => {
+      if (!MODAL_DIALOG.open) {
+        document.body.style.cursor = "none";
+      }
+    }, 500);
+  }, {
+    passive: true
+  });
   //#endregion Events
 });
