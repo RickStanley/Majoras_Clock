@@ -1,0 +1,22 @@
+/*chiaro font*/
+
+@font-face {
+  font-family: 'classic';
+  src: url(../assets/fonts/ChiaroStdB.otf) format('opentype');
+}
+
+/*rock n roll*/
+
+@font-face {
+  font-family: 'remaster';
+  src: url(../assets/fonts/RocknRollStdDB.otf) format('opentype');
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  background-color: rgba(81, 0, 120, 0.1);
+  height: 100%;
+  overflow: hidden;
+}

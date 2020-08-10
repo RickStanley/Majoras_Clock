@@ -1,0 +1,104 @@
+{
+  "general": {
+    "type": "toggle",
+    "fields": [
+      {
+        "label": "Minimize to tray after 10 seconds",
+        "name": "auto-minimize",
+        "default": true
+      },
+      {
+        "label": "Check time period (6 AM | 6 PM)",
+        "name": "check-time-period",
+        "default": true
+      },
+      {
+        "label": "Always check day transition",
+        "name": "check-day-transition",
+        "default": true
+      }
+    ]
+  },
+  "delays": {
+    "legend": "Delay titles appearance in seconds",
+    "type": "range",
+    "fields": [
+      {
+        "label": "Top title",
+        "name": "top-title-delay",
+        "default": 2
+      },
+      {
+        "label": "Middle title",
+        "name": "middle-title-delay",
+        "default": 2
+      },
+      {
+        "label": "Bottom title",
+        "name": "bottom-title-delay",
+        "default": 3
+      }
+    ]
+  },
+  "language": {
+    "legend": "Language",
+    "type": "select",
+    "name": "lang",
+    "default": "en",
+    "fields": [
+      {
+        "label": "English (Inglês)",
+        "value": "en"
+      },
+      {
+        "label": "German (Deutsch)",
+        "value": "de"
+      },
+      {
+        "label": "Japanese (日本語)",
+        "value": "ja"
+      },
+      {
+        "label": "French (Français)",
+        "value": "fr"
+      }
+    ]
+  },
+  "transitions": {
+    "legend": "Enable title transitions (fade)",
+    "type": "toggle",
+    "fields": [
+      {
+        "label": "Top title",
+        "name": "top-title-transition",
+        "default": false
+      },
+      {
+        "label": "Middle title",
+        "name": "middle-title-transition",
+        "default": false
+      },
+      {
+        "label": "Bottom title",
+        "name": "bottom-title-transition",
+        "default": true
+      }
+    ]
+  },
+  "font": {
+    "legend": "Titles font type",
+    "type": "radio",
+    "name": "font",
+    "default": "classic",
+    "fields": [
+      {
+        "label": "Classic",
+        "value": "classic"
+      },
+      {
+        "label": "Remaster (3Ds)",
+        "value": "frizQuadrata"
+      }
+    ]
+  }
+}

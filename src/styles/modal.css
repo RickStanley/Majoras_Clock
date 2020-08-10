@@ -1,0 +1,308 @@
+@font-face {
+  font-family: 'chiaro';
+  src: url(../assets/fonts/ChiaroStdB.otf) format('opentype');
+}
+
+/* #region Modal*/
+.modal {
+  background: linear-gradient(to bottom right, limegreen, forestgreen);
+  padding: 16px;
+  border-radius: 5px;
+  z-index: 5;
+  font-family: 'chiaro';
+  border: 0;
+}
+
+.modal--full {
+  height: 100%;
+  width: 100%;
+}
+
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__title {
+  line-height: 1.2;
+  text-align: center;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal[data-view=more] [data-action="open:more"] {
+  background-color: white;
+}
+
+.modal[data-view=more] .modal__form .modal__form__fields {
+  transform: translateX(100%);
+}
+
+.modal__form {
+  display: flex;
+  overflow: hidden;
+  max-width: 630px;
+  flex-direction: row-reverse;
+}
+
+.modal__form .modal__form__fields {
+  flex: 1 0 auto;
+  width: 100%;
+  transition: transform .2s;
+}
+
+/* #endregion */
+
+/* #region Forms*/
+legend {
+  text-align: center;
+}
+
+fieldset {
+  border: 0;
+}
+
+.form__group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form__group>* {
+  max-width: calc(100 / var(--items, 1) * 1% - 50px);
+  min-width: 150px;
+  margin: 16px;
+}
+
+.form__group-range {
+  display: grid;
+  grid-template-columns: max-content 150px;
+  gap: 5px;
+  justify-content: center;
+}
+
+.form__group-range label::after {
+  content: ":";
+}
+
+.form__group-range label {
+  text-align: right;
+}
+
+/* #endregion */
+
+/* #region Shared*/
+.radio,
+.toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  position: absolute;
+  opacity: 0;
+}
+
+/* #endregion */
+
+/* #region Select*/
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0;
+  background: #212121;
+  background-image: none;
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 12em;
+  height: 3em;
+  line-height: 3;
+  background: #212121;
+  overflow: hidden;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #343434;
+  color: white;
+  cursor: pointer;
+  pointer-events: none;
+  transition: .25s all ease;
+}
+
+/* #endregion */
+
+/* #region Input radio*/
+
+input[type=radio]:checked+i::before {
+  transform: scale(1);
+}
+
+.radio i {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background: #212121;
+  border-radius: 50%;
+}
+
+.radio i::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: calc(50% - 5px);
+  top: calc(50% - 5px);
+  background: deepskyblue;
+  border-radius: inherit;
+  transition: transform .2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: scale(0);
+}
+
+/* #endregion */
+
+/* #region Input range*/
+.range {
+  position: relative;
+}
+
+input[type=range]:hover+output {
+  opacity: 1;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: grab;
+  width: 100%;
+  outline: none;
+}
+
+input[type=range]:active {
+  cursor: grabbing;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: deepskyblue;
+  margin-top: -6px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+/* I can't explain the magic behind this, deal with it. */
+output {
+  min-width: 30px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: -50%;
+  opacity: 0;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  pointer-events: none;
+  transform: translate(-42%, -50%);
+  transition: opacity 0.2s;
+}
+
+output::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid black;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -1px;
+}
+
+/* #endregion */
+
+/* #region Toggle*/
+
+.toggle {
+  --toggle-thumb-size: 20px;
+  text-align: center;
+}
+
+.toggle span {
+  margin-top: 10px;
+  line-height: 1.2;
+}
+
+.toggle i {
+  width: 50px;
+  height: var(--toggle-thumb-size);
+  border-radius: 50px;
+  position: relative;
+  background: #212121;
+  transition: background .2s ease-in-out;
+}
+
+.toggle i::after {
+  content: '';
+  width: var(--toggle-thumb-size);
+  height: var(--toggle-thumb-size);
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  left: -1px;
+  transition: all .2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toggle input[type="checkbox"]:checked+i::after {
+  left: calc(100% - var(--toggle-thumb-size));
+}
+
+.toggle input[type="checkbox"]:checked+i {
+  background: deepskyblue;
+}
+
+/* #endregion */

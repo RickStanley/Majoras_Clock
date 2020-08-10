@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dawn of A New Day</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/modal.css">
+  <link rel="stylesheet" href="../styles/index.css">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+</head>
+
+<body>
+  <button data-action="open:secret" class="navi">
+    <img src="../assets/icons/Navi.png">
+  </button>
+  <!-- #region Modal-->
+  <dialog id="modal" class="modal"></dialog>
+  <!-- #endregion -->
+  <big-titles></big-titles>
+  <!-- #region Info-->
+  <p id="info"></p>
+  <!-- #endregion -->
+  <script type="module" src="../js/main.js"></script>
+  <script type="module" src="../js/modal.js"></script>
+</body>
+
+</html>

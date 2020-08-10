@@ -1,0 +1,95 @@
+/* #region Font faces*/
+@font-face {
+  font-family: 'classic';
+  src: url(../assets/fonts/rodin.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'remaster';
+  src: url(../assets/fonts/rodin.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'frizQuadrata';
+  src: url(../assets/fonts/FrizQuadrata.ttf) format('truetype');
+}
+
+/* #enregion Font faces*/
+
+/* #region Modal*/
+termina-clock {
+  display: block;
+  margin-top: -160px;
+}
+
+.modal {
+  top: 130px;
+  display: block;
+  will-change: transform;
+  contain: layout style;
+  transform: translateY(calc(-100% - 130px));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .4s ease, opacity .2s;
+}
+
+.modal[open] {
+  pointer-events: all;
+  transform: translateY(0);
+  opacity: 1;
+  /* animation: animatetop .4s ease normal; */
+}
+
+/* #endregion */
+
+body {
+  font-family: 'classic';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#info {
+  margin: 10px auto;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  animation: showInfo 0.8s ease 1s forwards;
+}
+
+.navi {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.navi:hover {
+  opacity: 1;
+}
+
+@keyframes showInfo {
+  to {
+    opacity: 0.1;
+  }
+}
+
+/* Show modal animation. */
+@keyframes animatetop {
+  from {
+    transform: translateY(calc(-100% - 130px));
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
