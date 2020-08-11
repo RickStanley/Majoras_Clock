@@ -103,7 +103,7 @@ SETTINGS_TEMPLATE.innerHTML = `
   </form>
 `;
 
-ready(async () => {
+export default ready(async () => {
   const CLOSE = new Audio('../assets/sounds/Dialogue_Done.wav');
   const NEXT = new Audio('../assets/sounds/Dialogue_Next.wav');
 

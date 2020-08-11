@@ -26,6 +26,7 @@ ipcRenderer.on("ready", async () => {
 
   if (IS_CURRENT_WINDOW_VISIBLE) {
     await import("./index.js");
+    import("./modal.js");
   }
 
   //#region Node
