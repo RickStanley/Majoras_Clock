@@ -1,4 +1,6 @@
+//#region Node
 const { ipcRenderer } = require("electron");
+//#endregion
 
 function dayTimePeriodCheck() {
   let end;

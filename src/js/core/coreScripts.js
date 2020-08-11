@@ -2,18 +2,9 @@
 
 const { countDownTimer } = require("./countDownTimer");
 const { timeCheck } = require("./timeCheck");
-const { midDayCheck } = require("./midDayCheck");
 
 const remote = require('electron').remote;
 
-/**
- * @typedef GlobalSettingsObject - Global user's settings.
- * @property {number[]} delays Titles delay, in order.
- * @property {'remaster' | 'classic'} font Current font settting.
- * @property {'de' | 'en' | 'fr' | 'ja'} lang Current language setting.
- */
-
-/** @type {GlobalSettingsObject} */
 let onCore = {
   delays: [],
   font: null,
@@ -28,17 +19,13 @@ function mainLoad() {
   const isWindowEntirelyVisible = (win.isFullScreen()) && (!win.isMinimized());
   if (isWindowEntirelyVisible) {
     let day;
-    let timer;
-    let timeout;
 
     const thisYear = new Date().getFullYear();
     const hours = hoursRemain();
-    const top = document.getElementById('topTitle');
     const middle = document.getElementById('middleTitle');
     const bottom = document.getElementById('bottomTitle');
     const today = dayNumber();
     const isFinalDay = ((!(isLeapYear()) && (today === 365)) || ((isLeapYear()) && (today === 366)));
-    const modal = document.getElementById('menu');
     const body = document.getElementById('indexBody');
 
     if (onCore.font === "classic") {
@@ -48,24 +35,6 @@ function mainLoad() {
       bottom.style.fontWeight = "200";
       bottom.style.fontFamily = "frizQuadrata";
     }
-
-    timeout = () => {
-      if (modal.style.display !== "block") {
-        body.style.cursor = "none";
-      }
-    };
-
-    window.addEventListener("mousemove", () => {
-      clearTimeout(timer);
-      body.style.cursor = "default";
-      timer = setTimeout(timeout, 500);
-    }, true);
-
-    midDayCheck(() => {
-      top.innerHTML = onCore.lang.fall;
-    }, () => {
-      top.innerHTML = onCore.lang.dawn;
-    });
 
     // this one has to come first, for finalHours() to work
     bottom.innerHTML = `-&nbsp;${onCore.lang.specific}${hours}&nbsp;${onCore.lang.hoursRemain}&nbsp;-`;
@@ -108,34 +77,12 @@ function mainLoad() {
       }
     }
     middle.innerHTML = `${onCore.lang.The}&nbsp;${day}&nbsp;${onCore.lang.Day}`;
-
-    fadeIn(top, onCore.delays[0]);
-    fadeIn(middle, onCore.delays[1]);
-    fadeIn(bottom, onCore.delays[2]);
-    // fadeIn(info, 1);
   }
 }
 
 window.addEventListener("load", () => {
   mainLoad();
-  const hey = new Audio('./assets/sounds/Navi_Hey.wav');
-  const listen = new Audio('./assets/sounds/Navi_Listen.wav');
 
-  ipcRenderer.on('play', (event, arg) => {
-    const alarm = new Audio('./assets/sounds/OOT_6amRooster.wav');
-    alarm.play();
-  });
-
-  const navi = document.getElementById('secret');
-  navi.addEventListener('mouseover', _ => {
-    hey.play();
-  });
-  navi.addEventListener('click', _ => {
-    listen.play();
-    setTimeout(() => {
-      alert('Thank you for using my app. :)');
-    }, 500);
-  });
 });
 
 /**

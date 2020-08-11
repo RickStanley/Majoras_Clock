@@ -1,4 +1,6 @@
+//#region Node
 const { ipcRenderer } = require("electron");
+//#endregion
 
 /**
  * Function to new day start.
