@@ -28,6 +28,7 @@ Unfortunately, I made a mistake on 30/10/2019 by migrating all the assets from t
 - [ ] Installation process
 - [ ] Update process
 - [ ] Final hours detection (see todo notes in `.js` files)
+- [ ] Locale should also cover settings modal
 
 ## Gallery
 
