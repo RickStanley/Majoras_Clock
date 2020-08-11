@@ -30,6 +30,7 @@ ipcRenderer.on("ready", async () => {
   }
 
   //#region Node
+  // @todo Figure out why I did this.
   ipcRenderer.on("play", () => {
     const ALARM = new Audio("../assets/sounds/OOT_6amRooster.wav");
     ALARM.play();
