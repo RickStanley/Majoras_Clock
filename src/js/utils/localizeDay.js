@@ -16,7 +16,6 @@ export default (CURRENT_DAY, LOCALE, IS_FINAL_DAY) => {
     result = LOCALE.third;
   } else if (IS_FINAL_DAY) {
     result = LOCALE.final;
-    // @todo Countdown timer or Hook for this function.
   } else {
     if ((CURRENT_LANG === "en") && (CURRENT_DAY > 3) && !IS_FINAL_DAY) {
       const lastDigit = (CURRENT_DAY % 10);

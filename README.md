@@ -27,7 +27,7 @@ Unfortunately, I made a mistake on 30/10/2019 by migrating all the assets from t
 - [ ] Live preview on some options change
 - [ ] Installation process
 - [ ] Update process
-- [ ] Final hours detection (see todo notes in `.js` files)
+- [x] Final hours detection (see todo notes in `.js` files)
 - [ ] Locale should also cover settings modal
 
 ## Gallery

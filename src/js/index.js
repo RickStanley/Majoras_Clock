@@ -27,7 +27,11 @@ export default ready(async () => {
   const BIG_TITLES = document.querySelector("big-titles");
   const INFO = document.getElementById("info");
   const MODAL_DIALOG = document.getElementById("modal");
+  //#region Node
   const MODIFIER_KEY = process.platform === "darwin" ? "CMD" : "Ctrl";
+  //#region
+
+  const FINAL_HOURS_TRACK = new Audio("../assets/sounds/FinalHours.m4a")
 
   const { default: LOCALE } = await import(`./lang/lang.${readSettings(SETTINGS_INTERFACE.language.name)}.js`);
 
@@ -40,6 +44,20 @@ export default ready(async () => {
   BIG_TITLES.setAttribute("font", readSettings(SETTINGS_INTERFACE.font.name));
 
   BIG_TITLES.locale = LOCALE;
+
+  BIG_TITLES.addEventListener("finaldayending", ({ detail: milliseconds }) => {
+    const SECOND = 1000;
+    const MINUTE = SECOND * 60;
+    const SECONDS = ~~((milliseconds % MINUTE) / SECOND);
+    FINAL_HOURS_TRACK.currentTime = SECONDS;
+    FINAL_HOURS_TRACK.play();
+  }, {
+    once: true
+  });
+
+  BIG_TITLES.addEventListener("finaldayended", () => {
+    ipcRenderer.invoke("newDay", "period");
+  });
 
   attach(BigTitles, BigTitles.DEFAULT_NAME);
 

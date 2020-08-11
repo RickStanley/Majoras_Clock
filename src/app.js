@@ -158,11 +158,11 @@ const createWindow = (maximize = true) => {
       inSession[indexCounter + 1].isAlwaysOnTop(true);
 
       // This guy has to come after setSkipTaskbar
-      inSession[indexCounter + 1].setFullScreen(true);
+      // inSession[indexCounter + 1].setFullScreen(true);
 
       // Open the DevTools.
-      // inSession[indexCounter + 1].webContents.openDevTools();
-      inSession[indexCounter + 1].setMenu(null);
+      inSession[indexCounter + 1].webContents.openDevTools();
+      // inSession[indexCounter + 1].setMenu(null);
 
       inSession[indexCounter + 1].webContents.send("ready");
     });

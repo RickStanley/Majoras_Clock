@@ -39,38 +39,12 @@ class BigTitles extends HTMLElement {
     this.render();
   }
 
-  async render() {
-    /** @type {number[] | undefined} */
-    const DELAYS = this.getAttribute("delays") && JSON.parse(this.getAttribute("delays"));
-    const ENABLED_TRANSITIONS = this.getAttribute("transitions") && JSON.parse(this.getAttribute("transitions"));
-
-    await this._renderTitles();
-
-    if (DELAYS)
-      this._setTitleDelays(DELAYS);
-    if (ENABLED_TRANSITIONS)
-      this._setEnabledTransitions(ENABLED_TRANSITIONS);
-
-    this.shadowRoot.appendChild(this.#P);
-
-  }
-
-  async _renderTitles() {
-    const NOW = new Date();
-
-    const REMAINING_HOURS = hoursRemain(this.CURRENT_DAY);
-
-    this.topText = NOW.getHours() > 12 ? this.locale.fall : this.locale.dawn;
-
-    this.bottomText = `- ${this.locale.specific}${REMAINING_HOURS} ${this.locale.hoursRemain} -`;
-
-    const CENTER_TEXT = localizeDay(this.CURRENT_DAY, this.locale, this.IS_FINAL_DAY);
-
-    this.middleText = `${this.locale.The} ${CENTER_TEXT} ${this.locale.Day}`;
-  }
-
   get locale() {
     return this.LOCALE;
+  }
+
+  get isFinalDay() {
+    return this.IS_FINAL_DAY;
   }
 
   /**
@@ -99,6 +73,96 @@ class BigTitles extends HTMLElement {
    */
   set locale(value) {
     this.LOCALE = value;
+  }
+
+  async render() {
+    /** @type {number[] | undefined} */
+    const DELAYS = this.getAttribute("delays") && JSON.parse(this.getAttribute("delays"));
+    const ENABLED_TRANSITIONS = this.getAttribute("transitions") && JSON.parse(this.getAttribute("transitions"));
+
+    this._prepareTitles();
+
+    if (DELAYS)
+      this._setTitleDelays(DELAYS);
+    if (ENABLED_TRANSITIONS)
+      this._setEnabledTransitions(ENABLED_TRANSITIONS);
+
+    this.shadowRoot.appendChild(this.#P);
+
+  }
+
+  _prepareTitles() {
+    const NOW = new Date();
+
+    const REMAINING_HOURS = hoursRemain(this.CURRENT_DAY);
+
+    this.topText = NOW.getHours() > 12 ? this.locale.fall : this.locale.dawn;
+
+    const CENTER_TEXT = localizeDay(this.CURRENT_DAY, this.locale, this.IS_FINAL_DAY);
+
+    this.middleText = `${this.locale.The} ${CENTER_TEXT} ${this.locale.Day}`;
+
+    if (this.IS_FINAL_DAY) {
+      this._startFinalHours(NOW);
+    } else {
+      this.bottomText = `- ${this.locale.specific}${REMAINING_HOURS} ${this.locale.hoursRemain} -`;
+    }
+
+  }
+
+  /**
+   * Starts final hours.
+   */
+  _startFinalHours(INITIAL_TIME = new Date()) {
+    //#region Conversion to milliseconds
+    const SECOND = 1000;
+    const MINUTE = SECOND * 60;
+    const HOUR = MINUTE * 60;
+    const DAY = HOUR * 24;
+    //#endregion
+
+    /** @type {[number, number, number]} Triple indicating expected end. In this order: HOURS, MINUTES, SECONDS. */
+    const FINAL_HOUR_THRESHOLD = [23, 54, 23]
+    const END_DAY_THRESHOLD = new Date(INITIAL_TIME.getFullYear(), INITIAL_TIME.getMonth(), INITIAL_TIME.getDate(), ...FINAL_HOUR_THRESHOLD);
+    const NEXT_DAY = new Date(INITIAL_TIME.getFullYear(), INITIAL_TIME.getMonth(), INITIAL_TIME.getDate() + 1);
+
+    const LOOP = () => {
+      const CURRENT_ITERATION = new Date();
+
+      const DAY_IS_ENDING = (END_DAY_THRESHOLD - CURRENT_ITERATION) <= 0;
+      const DAY_HAS_ENDED = (NEXT_DAY - CURRENT_ITERATION) <= 0;
+      const CURRENT_DISTANCE = NEXT_DAY - CURRENT_ITERATION;
+
+      let resultText = "";
+
+      // "~~" is somewhat faster than Math.floor()
+      const MINUTES = (~~((CURRENT_DISTANCE % HOUR) / MINUTE)).toString().padStart(2, "0");
+      const SECONDS = (~~((CURRENT_DISTANCE % MINUTE) / SECOND)).toString().padStart(2, "0");
+
+      if (DAY_IS_ENDING) {
+        this.dispatchEvent(new CustomEvent("finaldayending", {
+          detail: CURRENT_DISTANCE,
+        }));
+        // Get meaningful milliseconds.
+        const MILLISECONDS = CURRENT_DISTANCE.toString().padStart(3, "0").slice(-3).slice(0, -1);
+        resultText = `- ${MINUTES}:${SECONDS}:${MILLISECONDS} ${this.locale.timeRemain} -`;
+      } else {
+        const HOURS = (~~((CURRENT_DISTANCE % DAY) / HOUR)).toString().padStart(2, "0");
+
+        // All together now!
+        resultText = `- ${HOURS + this.locale.hours + MINUTES + this.locale.minutes + SECONDS + this.locale.secondsRemain}`;
+      }
+
+      this.bottomText = resultText;
+
+      if (DAY_HAS_ENDED) {
+        this.dispatchEvent(new CustomEvent("finaldayended"));
+      } else {
+        requestAnimationFrame(LOOP);
+      }
+    };
+
+    LOOP();
   }
 
   _setTitleDelays([TOP_TITLE_DELAY, MIDDLE_TITLE_DELAY, BOTTOM_TITLE_DELAY]) {
@@ -155,7 +219,7 @@ class BigTitles extends HTMLElement {
   
       .bottom-title {
         font-family: '${CURRENT_FONT}';
-        font-size: calc(75 / 1536 * 100vw);
+        font-size: calc(70 / 1536 * 100vw);
         line-height: calc(150 / 1536 * 100vw);
         font-weight: ${BOTTOM_FONT_WEIGHT};
         letter-spacing: calc(-5 / 1536 * 100vw);
