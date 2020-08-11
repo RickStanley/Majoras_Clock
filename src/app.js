@@ -335,7 +335,6 @@ app.on("ready", () => {
     }
   ]);
   tray.setToolTip("Majora's Clock");
-  //This is for Linux contextMenu.items[1].checked = false;
   tray.setContextMenu(contextMenu);
   tray.on("double-click", () => {
     createWindow();
@@ -369,13 +368,6 @@ ipcMain.handle("close:night", () => {
 
 ipcMain.handle("newDay", (event, arg) => {
   createWindow();
-  // Workaround to get "foregrounded" on windows and hopefully on all OSes
-  // inSession[id + 1].minimize();
-  // inSession[id + 1].maximize();
-  // Update: perhaps it's no longer necessary once it has been implemented on the
-  // mainWindow function, but just to make sure, leave it be
-  inSession[indexCounter + 1].focus();
-  // end of the workaround
   if (arg === "period") {
     setTimeout(() => {
       inSession[indexCounter + 1].webContents.send("play");
