@@ -13,6 +13,22 @@ const hashCode = string => { for (var i = 0, h; i < string.length; i++)h = Math.
 const ready = f => /in/.test(document.readyState) ? setTimeout(ready, 5, f) : f();
 
 /**
+ * @returns {Promise<number>}
+ * @param {HTMLAudioElement} audio 
+ */
+const getAudioDuration = audio => {
+  return new Promise((resolve, reject) => {
+    audio.addEventListener("loadeddata", () => {
+      if (audio.duration)
+        resolve(audio.duration);
+      else reject("Couldn't retrieve audio duration.");
+    }, {
+      once: true
+    });
+  });
+};
+
+/**
  * Attaches/define component in current window.
  * @param {CustomElementConstructor} component 
  * @param {string} componentName 
@@ -23,5 +39,6 @@ const attach = (component, componentName, options) => customElements.define(comp
 export {
   ready,
   hashCode,
-  attach
+  attach,
+  getAudioDuration
 };
