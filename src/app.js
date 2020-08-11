@@ -291,7 +291,11 @@ function createClockWindow() {
     width: 350,
     resizable: false,
     transparent: true,
-    show: false
+    show: false,
+    webPreferences: {
+      nodeIntegration: true,
+      worldSafeExecuteJavaScript: true
+    }
   });
 
   clockWindow.loadURL(`file://${__dirname}/views/clock.html`);
