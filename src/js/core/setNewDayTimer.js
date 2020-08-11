@@ -12,7 +12,7 @@ function setNewDayTimer() {
   const now = new Date();
   const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
   distance = tomorrow - now;
-  globalThis.newdaytimer = setTimeout(() => ipcRenderer.invoke("newDay"), distance);
+  globalThis.newdaytimer = setTimeout(() => ipcRenderer.send("newDay"), distance);
 }
 
 export default setNewDayTimer;

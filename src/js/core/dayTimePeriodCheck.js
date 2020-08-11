@@ -40,7 +40,7 @@ async function dayTimePeriodCheck() {
   }
 
   BELLS.addEventListener("ended", () => {
-    ipcRenderer.invoke(...Object.values(currentCallOptions));
+    ipcRenderer.send(...Object.values(currentCallOptions));
   });
 
   for (const [DATE, OPTIONS] of CALLS) {

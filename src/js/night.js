@@ -20,7 +20,7 @@ ready(async () => {
   NIGHT_TITLES.locale = LOCALE;
 
   NIGHT_TITLES.addEventListener("animationend", () => {
-    ipcRenderer.invoke("close:night");
+    ipcRenderer.send("close:night");
   }, {
     once: true
   });

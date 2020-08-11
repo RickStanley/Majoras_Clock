@@ -17,7 +17,7 @@ ready(async () => {
       const ACTION = ACTION_ELEMENT.dataset.action;
       switch (ACTION) {
         case "close:clock":
-          ipcRenderer.invoke("close:clock");
+          ipcRenderer.send("close:clock");
           break;
       }
     }

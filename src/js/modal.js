@@ -129,7 +129,7 @@ export default ready(async () => {
           try {
             MODAL.close();
           } catch {
-            ipcRenderer.invoke("close:modal");
+            ipcRenderer.send("close:modal");
           } finally {
             CLOSE.play();
           }
@@ -169,7 +169,7 @@ export default ready(async () => {
     saveSettings(FORM_ELEMENT.name, VALUE);
 
     if (FORM_ELEMENT.type === "checkbox") {
-      ipcRenderer.invoke("headless");
+      ipcRenderer.send("headless");
     }
   });
 

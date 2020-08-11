@@ -88,7 +88,9 @@ export default ready(async () => {
   });
 
   BIG_TITLES.addEventListener("finaldayended", () => {
-    ipcRenderer.invoke("newDay", "period");
+      //#redion Node
+    ipcRenderer.send("newDay", "period");
+      //#endregion
   });
 
   attach(BigTitles, BigTitles.DEFAULT_NAME);
@@ -98,7 +100,7 @@ export default ready(async () => {
   if (readSettings("auto-minimize")) {
     setTimeout(() => {
       //#redion Node
-      ipcRenderer.invoke("minimize:main");
+      ipcRenderer.send("minimize:main");
       //#endregion
     }, 10000);
   }
