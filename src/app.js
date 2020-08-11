@@ -382,7 +382,7 @@ ipcMain.on("newDay", (event, arg) => {
 ipcMain.on("night", createNightWindow);
 
 ipcMain.on("headless", (event, arg) => {
-  if (inSession[indexCounter + 1].isVisible()) {
+  if (!(inSession[indexCounter + 1].isVisible())) {
     createWindow(false);
   }
 });
