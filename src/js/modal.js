@@ -171,5 +171,7 @@ export default ready(async () => {
     if (FORM_ELEMENT.type === "checkbox") {
       ipcRenderer.invoke("headless");
     }
-  })
+  });
+
+  MODAL.dispatchEvent(new CustomEvent("mounted"));
 });

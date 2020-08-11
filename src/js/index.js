@@ -1,3 +1,5 @@
+/** @typedef {import("./components/terminaClock.js").default} TerminaClock */
+
 //#region Node
 const { readSettings, SETTINGS_INTERFACE } = require("../js/core/userSettings.js");
 const { ipcRenderer } = require("electron");
@@ -26,7 +28,37 @@ export default ready(async () => {
   /** @type {BigTitles} */
   const BIG_TITLES = document.querySelector("big-titles");
   const INFO = document.getElementById("info");
+
+  //#region Modal
+  /** @type {HTMLDialogElement} */
   const MODAL_DIALOG = document.getElementById("modal");
+  /**@type {TerminaClock} */
+  let TerminaClock = null;
+
+  MODAL_DIALOG.addEventListener("mounted", () => {
+    TerminaClock = MODAL_DIALOG.querySelector("termina-clock");
+    TerminaClock.stop();
+  });
+
+  const O_O = new MutationObserver(() => {
+    if (MODAL_DIALOG.hasAttribute("open")) {
+      TerminaClock.play();
+    } else {
+      TerminaClock.stop()
+    }
+  });
+
+  // Not, there's no "open" event for dialogs, only "close"... Those bastards!
+  // REF: https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element
+  O_O.observe(MODAL_DIALOG, {
+    subtree: false,
+    childList: false,
+    characterData: false,
+    attributeFilter: ["open"]
+  });
+
+  //#endregion
+
   //#region Node
   const MODIFIER_KEY = process.platform === "darwin" ? "CMD" : "Ctrl";
   //#region
