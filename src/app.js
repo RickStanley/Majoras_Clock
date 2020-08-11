@@ -347,30 +347,30 @@ app.on("ready", () => {
 
 //#region IPC channels
 
-ipcMain.handle("minimize:main", () => {
-  createWindow(false);
-});
-
 ipcMain.handle("main:is:visible", async () => {
   return inSession[indexCounter + 1].isVisible();
 });
 
-ipcMain.handle("close:modal", () => {
+ipcMain.on("minimize:main", () => {
+  createWindow(false);
+});
+
+ipcMain.on("close:modal", () => {
   if (settingsWindow.isVisible())
     settingsWindow.close();
 });
 
-ipcMain.handle("close:clock", () => {
+ipcMain.on("close:clock", () => {
   if (clockWindow.isVisible())
     clockWindow.close();
 });
 
-ipcMain.handle("close:night", () => {
+ipcMain.on("close:night", () => {
   if (nightWindow.isVisible())
     nightWindow.close();
 });
 
-ipcMain.handle("newDay", (event, arg) => {
+ipcMain.on("newDay", (event, arg) => {
   createWindow();
   if (arg === "period") {
     setTimeout(() => {
@@ -379,9 +379,9 @@ ipcMain.handle("newDay", (event, arg) => {
   }
 });
 
-ipcMain.handle("night", createNightWindow);
+ipcMain.on("night", createNightWindow);
 
-ipcMain.handle("headless", (event, arg) => {
+ipcMain.on("headless", (event, arg) => {
   if (inSession[indexCounter + 1].isVisible()) {
     createWindow(false);
   }
