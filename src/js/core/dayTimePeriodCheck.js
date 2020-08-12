@@ -31,7 +31,7 @@ async function dayTimePeriodCheck() {
   const NEXT_DAWN = new Date(NOW.getFullYear(), NOW.getMonth(), NEXT_DAWN_DATE, 5, 59, END_SECONDS);
 
   // Since the window always re-opens in the main process, there'll always be a "next dawn".
-  CALLS.set(NEXT_DAWN, { call: "newDay", argument: "period" });
+  CALLS.set(NEXT_DAWN, { call: "newDay" });
 
   // But we have to check if the night has passed.
   if (NOW.getHours() < 18) {
