@@ -10,7 +10,8 @@ const {
 const path = require('path');
 const { checkAndInit } = require("./js/core/userSettings");
 
-app.commandLine.appendSwitch('--autoplay-policy', 'no-user-gesture-required');
+app.commandLine.appendSwitch("--autoplay-policy", "no-user-gesture-required");
+app.commandLine.appendSwitch("disable-features", "HardwareMediaKeyHandling,MediaSessionService");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
