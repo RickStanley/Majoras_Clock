@@ -46,7 +46,7 @@ Unfortunately, I made a mistake on 30/10/2019 by migrating all the assets from t
 ![Tray menu](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/menu.jpg "Tray Menu")
 
 ### Settings
-![Settings window](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/settings.gif "Settings")
+![Settings window](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/Settings.gif "Settings")
 
 ### Clock
 ![Clock window](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/clock.gif "Clock")
