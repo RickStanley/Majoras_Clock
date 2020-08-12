@@ -6,11 +6,6 @@
 
 @font-face {
   font-family: 'remaster';
-  src: url(../assets/fonts/rodin.otf) format('opentype');
-}
-
-@font-face {
-  font-family: 'frizQuadrata';
   src: url(../assets/fonts/FrizQuadrata.ttf) format('truetype');
 }
 

@@ -1,11 +1,7 @@
-/*chiaro font*/
-
 @font-face {
   font-family: 'classic';
   src: url(../assets/fonts/ChiaroStdB.otf) format('opentype');
 }
-
-/*rock n roll*/
 
 @font-face {
   font-family: 'remaster';
