@@ -20,7 +20,7 @@ Unfortunately, I made a mistake on 30/10/2019 by migrating all the assets from t
 
 ## TODO
 
-- [ ] Clean up unused assets
+- [x] Clean up unused assets
 - [ ] Add more options:
   - [ ] Smart detecion (prevent showing up if playing, listening to something important, etc)
   - [ ] Priority
