@@ -8,11 +8,10 @@ const { ipcRenderer } = require("electron");
 function setNewDayTimer() {
   if (globalThis.newdaytimer)
     clearTimeout(newdaytimer);
-  let distance;
-  const now = new Date();
-  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-  distance = tomorrow - now;
-  globalThis.newdaytimer = setTimeout(() => ipcRenderer.send("newDay"), distance);
+  const NOW = new Date();
+  const TOMORROW = new Date(NOW.getFullYear(), NOW.getMonth(), NOW.getDate() + 1);
+  const DISTANCE = TOMORROW - NOW;
+  globalThis.newdaytimer = setTimeout(() => ipcRenderer.send("newDay"), DISTANCE);
 }
 
 export default setNewDayTimer;
