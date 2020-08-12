@@ -373,6 +373,15 @@ ipcMain.on("close:night", () => {
 
 ipcMain.on("newDay", (event, arg) => {
   createWindow();
+
+  if (arg === "period") {
+    // This is necessary because the previous main window gets destroyed
+    // and the Rooster sound won't play in index.js, because it's gone.
+    // We need way for the main process to tell this when it should play.
+    setTimeout(() => {
+      inSession[indexCounter + 1].webContents.send("playrooster");
+    }, 9000);
+  }
 });
 
 ipcMain.on("night", createNightWindow);

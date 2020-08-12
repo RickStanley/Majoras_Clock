@@ -30,3 +30,13 @@ ipcRenderer.on("ready", async () => {
   }
 
 });
+
+//#region Node
+// This is necessary because the previous main window gets destroyed
+// and this won't play in index.js, because it's gone.
+// We need way for the main process to tell this when it should play.
+ipcRenderer.on("playrooster", () => {
+  const ALARM = new Audio("../assets/sounds/OOT_6amRooster.wav");
+  ALARM.play();
+});
+//#endregion

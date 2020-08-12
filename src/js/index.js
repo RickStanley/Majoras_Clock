@@ -21,12 +21,6 @@ function DawnOfANewDay() {
     }
   }, 800);
 
-  if (HOURS < 7) {
-    setTimeout(() => {
-      const ALARM = new Audio("../assets/sounds/OOT_6amRooster.wav");
-      ALARM.play();
-    }, 9000);
-  }
 }
 
 export default ready(async () => {
@@ -104,6 +98,7 @@ export default ready(async () => {
 
   DawnOfANewDay();
 
+  //#region Node
   if (readSettings("auto-minimize")) {
     setTimeout(() => {
       //#redion Node
@@ -111,6 +106,7 @@ export default ready(async () => {
       //#endregion
     }, 10000);
   }
+  //#endregion
 
   INFO.textContent = `[${MODIFIER_KEY}+X] ${LOCALE.exit} | [${MODIFIER_KEY}+C] ${LOCALE.minimize} | [O] ${LOCALE.menu}`;
 
