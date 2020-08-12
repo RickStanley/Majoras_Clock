@@ -33,19 +33,20 @@ Unfortunately, I made a mistake on 30/10/2019 by migrating all the assets from t
 
 ## Gallery
 
-**These images are outdated. (10/08/2020)**
+### Dawn/Fall
+![Fall of day in english](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/fallenglish.gif "Fall of day in english")
 
-### Launcher
-![alt text](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/mj-launch.gif "Launcher")
+![Fall of day in german](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/fallgerman.gif "Fall of day in german")
+
+![Nightfall classic](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/nightfallclassic.gif "Nightfall classic")
+
+![Nightfall remaster](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/nightfallremaster.gif "Nightfall remaster")
 
 ### Menu
-![alt text](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/trayMenu.gif "Tray Menu")
+![Tray menu](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/menu.jpg "Tray Menu")
 
 ### Settings
-![alt text](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/Settings.gif "Settings")
+![Settings window](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/settings.gif "Settings")
 
 ### Clock
-![alt text](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/clock.gif "Clock")
-
-### Dawn of A New Day
-![alt text](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/DawnOf.gif "Dawn of -")
+![Clock window](https://github.com/RickStanley/Majoras_Clock/blob/master/gifs/clock.gif "Clock")
