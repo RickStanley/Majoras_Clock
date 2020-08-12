@@ -37,7 +37,6 @@ termina-clock {
   pointer-events: all;
   transform: translateY(0);
   opacity: 1;
-  /* animation: animatetop .4s ease normal; */
 }
 
 /* #endregion */
@@ -78,18 +77,5 @@ body {
 @keyframes showInfo {
   to {
     opacity: 0.1;
-  }
-}
-
-/* Show modal animation. */
-@keyframes animatetop {
-  from {
-    transform: translateY(calc(-100% - 130px));
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
