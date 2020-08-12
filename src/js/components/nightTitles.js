@@ -104,7 +104,7 @@ class NightTitles extends HTMLElement {
 
       :host(.remaster) {
         font-family: 'remaster';
-        background: linear-gradient(to left, rgba(32, 0, 96, 0.97) 6%, rgba(32, 0, 96, 0.9) 13%, rgba(81, 0, 120, 0.69) 33%, rgba(108, 34, 119, 0) 100%);
+        background: linear-gradient(to right, rgba(32, 0, 96, 0.97) 6%, rgba(32, 0, 96, 0.9) 13%, rgba(81, 0, 120, 0.69) 33%, rgba(108, 34, 119, 0) 100%);
         padding: 0;
         display: flex;
         flex-direction: column;
