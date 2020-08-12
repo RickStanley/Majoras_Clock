@@ -52,7 +52,7 @@ fieldset,
   font-size: 20px;
   color: hsl(210, 100%, 40%);
   margin-right: 10px;
-  animation: glow 1.5s ease-in-out infinite alternate, changeColor 1.5s ease-in-out infinite alternate;
+  animation: glow .75s ease-in-out infinite alternate, changeColor .75s ease-in-out infinite alternate;
   line-height: 1;
 }
 
@@ -71,11 +71,11 @@ fieldset,
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px hsl(210, 100%, 40%), 0 0 20px hsl(210, 100%, 40%), 0 0 30px hsl(210, 100%, 40%), 0 0 40px deepskyblue, 0 0 70px deepskyblue, 0 0 80px deepskyblue, 0 0 100px deepskyblue, 0 0 150px deepskyblue;
+    text-shadow: 0 0 5px hsl(210, 100%, 40%), 0 0 5px hsl(210, 100%, 40%), 0 0 5px hsl(210, 100%, 40%);
   }
 
   to {
-    text-shadow: 0 0 5px hsl(210, 100%, 40%), 0 0 10px hsl(210, 100%, 40%), 0 0 15px hsl(210, 100%, 40%), 0 0 20px deepskyblue, 0 0 35px deepskyblue, 0 0 40px deepskyblue, 0 0 50px deepskyblue, 0 0 75px deepskyblue;
+    text-shadow: 0 0 10px deepskyblue, 0 0 10px deepskyblue, 0 0 10px deepskyblue;
   }
 }
 
