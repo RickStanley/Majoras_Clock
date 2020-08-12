@@ -29,7 +29,7 @@ class NightTitles extends HTMLElement {
 
     // Japanese version needs to be improved, I don't speak japanese.
     const CONTENT_TOP = this.locale.language === "jp" ? DAY_LOCALIZED + this.locale.onNightOf : `${this.locale.onNightOf}${DAY_LOCALIZED} ${this.locale.Day}`;
-    const CONTENT_BOTTOM = `-${this.locale.specific}${HOURS} ${this.locale.hoursRemain}-`;
+    const CONTENT_BOTTOM = `- ${this.locale.specific}${HOURS} ${this.locale.hoursRemain} -`;
 
     this.shadowRoot.appendChild(this.#TOP_TITLE);
     this.shadowRoot.appendChild(this.#BOTTOM_TITLE);
