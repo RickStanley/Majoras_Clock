@@ -20,6 +20,13 @@ function DawnOfANewDay() {
       AUDIO_LAYER_MORNING.play();
     }
   }, 800);
+
+  if (HOURS < 7) {
+    setTimeout(() => {
+      const ALARM = new Audio("../assets/sounds/OOT_6amRooster.wav");
+      ALARM.play();
+    }, 9000);
+  }
 }
 
 export default ready(async () => {
@@ -88,9 +95,9 @@ export default ready(async () => {
   });
 
   BIG_TITLES.addEventListener("finaldayended", () => {
-      //#redion Node
-    ipcRenderer.send("newDay", "period");
-      //#endregion
+    //#redion Node
+    ipcRenderer.send("newDay");
+    //#endregion
   });
 
   attach(BigTitles, BigTitles.DEFAULT_NAME);

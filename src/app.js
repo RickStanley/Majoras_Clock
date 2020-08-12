@@ -373,11 +373,6 @@ ipcMain.on("close:night", () => {
 
 ipcMain.on("newDay", (event, arg) => {
   createWindow();
-  if (arg === "period") {
-    setTimeout(() => {
-      inSession[indexCounter + 1].webContents.send("play");
-    }, 9000);
-  }
 });
 
 ipcMain.on("night", createNightWindow);
