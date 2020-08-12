@@ -28,7 +28,7 @@ Unfortunately, I made a mistake on 30/10/2019 by migrating all the assets from t
 - [ ] Installation process
 - [ ] Update process
 - [ ] Locale should also cover settings modal
-- [ ] Change clock loop to timeout
+- [ ] ~~Change clock loop to timeout~~ (maybe it's good as it is?)
 - [x] Final hours detection (see todo notes in `.js` files)
 
 ## Gallery
