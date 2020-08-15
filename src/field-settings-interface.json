@@ -100,5 +100,21 @@
         "value": "remaster"
       }
     ]
+  },
+  "autostart": {
+    "legend": "Autostart",
+    "type": "toggle",
+    "fields": [
+      {
+        "label": "Start app on login",
+        "name": "autostart",
+        "default": false
+      },
+      {
+        "label": "Start app minimized",
+        "name": "autostart-minimized",
+        "default": true
+      }
+    ]
   }
 }

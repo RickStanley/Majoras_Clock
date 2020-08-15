@@ -30,6 +30,12 @@ SETTINGS_TEMPLATE.innerHTML = `
         ${setupGroupSettings(SETTINGS_INTERFACE.delays)}
         </div>
       </fieldset>
+      <fieldset>
+        <legend>${SETTINGS_INTERFACE.autostart.legend}</legend>
+        <div class="form__group">
+        ${setupGroupSettings(SETTINGS_INTERFACE.autostart)}
+        </div>
+      </fieldset>
     </div>
     <div class="modal__form__fields">
       <fieldset>
@@ -119,6 +125,12 @@ export default ready(async () => {
 
     if (FORM_ELEMENT.type === "checkbox") {
       ipcRenderer.send("headless");
+
+      const AUTO_START_FIELD = SETTINGS_INTERFACE.autostart.fields.find((field) => field.name === "autostart");
+
+      if (FORM_ELEMENT.name === AUTO_START_FIELD?.name) {
+        ipcRenderer.send("set:autostart", { activate: FORM_ELEMENT.checked });
+      }
     }
   });
 

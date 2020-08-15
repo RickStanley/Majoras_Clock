@@ -8,7 +8,17 @@ const {
 } = require("electron");
 
 const path = require('path');
-const { checkAndInit } = require("./js/core/userSettings");
+const { checkAndInit, readSettings } = require("./js/core/userSettings");
+
+const wasAutoStart = (() => {
+  const isAutoStartEnabled = readSettings("autostart");
+  const isMinimizedEnbaled = readSettings("autostart-minimized");
+  const wasAutoStarted = app.getLoginItemSettings().wasOpenedAtLogin || process.argv.includes("--autostart");
+
+  return isAutoStartEnabled && isMinimizedEnbaled && wasAutoStarted;
+})();
+
+let autostartEntryDone = false;
 
 app.commandLine.appendSwitch("--autoplay-policy", "no-user-gesture-required");
 app.commandLine.appendSwitch("disable-features", "HardwareMediaKeyHandling,MediaSessionService");
@@ -22,11 +32,11 @@ if (require("electron-squirrel-startup")) {
 let iconStatic;
 // we need to handle incs for macOS
 if (process.platform === "win32") {
-  iconStatic = path.join(__dirname, "assets/icons/win/", "icon.ico");
+  iconStatic = path.join(__dirname, "assets/icons/", "icon.ico");
 } else if (process.platform === "darwin") {
-  iconStatic = path.join(__dirname, "assets/icons/mac/", "icon.icns");
+  iconStatic = path.join(__dirname, "assets/icons/", "icon.icns");
 } else {
-  iconStatic = path.join(__dirname, "assets/icons/png/", "64x64.png");
+  iconStatic = path.join(__dirname, "assets/icons/png/", "256x256.png");
 }
 
 /**
@@ -101,6 +111,11 @@ const createWindow = (maximize = true) => {
   isFullscreen = true;
 
   checkAndInit();
+
+  if (wasAutoStart && !autostartEntryDone) {
+    autostartEntryDone = true;
+    maximize = false;
+  }
 
   // Create the browser window.
   if (maximize) {
@@ -217,7 +232,7 @@ function createSettingsWindow() {
   settingsWindow = new BrowserWindow({
     icon: iconStatic,
     frame: false,
-    height: 710,
+    height: 750,
     width: 662,
     resizable: false,
     skipTaskbar: true,
@@ -351,6 +366,10 @@ app.on("ready", () => {
 
 ipcMain.handle("main:is:visible", async () => {
   return inSession[indexCounter + 1].isVisible();
+});
+
+ipcMain.on("set:autostart", (event, { activate }) => {
+  app.setLoginItemSettings({ openAtLogin: activate, args: ["--autostart"] });
 });
 
 ipcMain.on("minimize:main", () => {
