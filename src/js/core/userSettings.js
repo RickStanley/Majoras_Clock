@@ -29,7 +29,7 @@ function readAllSettings() {
 function checkAndInit() {
   if (!Object.keys(nconf.load()).length) {
     for (const PROPERTIES of Object.values(SETTINGS_INTERFACE)) {
-      if (PROPERTIES.type === "select") {
+      if (["select", "radio"].includes(PROPERTIES.type)) {
         nconf.set(PROPERTIES.name, PROPERTIES.default);
         nconf.save();
       } else {
