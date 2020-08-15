@@ -5,6 +5,7 @@ const createRadios = (values, { name = "" } = {}) => values.map(({ value, label 
   <span>${label}</span>
 </label>
 `);
+
 const createToggle = ({ label = "", name = "", checked = false } = {}) => `
 <label class="toggle">
   <input name="${name}" type="checkbox" ${checked ? "checked" : ""} >
@@ -12,6 +13,7 @@ const createToggle = ({ label = "", name = "", checked = false } = {}) => `
   <span>${label}</span>
 </label>
 `;
+
 const createRange = ({ label = "", value = "1", name = "", min = "1", max = "4" } = {}) => `
 ${label ? `<label>${label}</label>` : ""}
 <div class="range" is="input-range">
@@ -19,6 +21,7 @@ ${label ? `<label>${label}</label>` : ""}
   <output>${value}</output>
 </div>
 `;
+
 /**
  * @param {{label: string, value: string}[]} values
  */
